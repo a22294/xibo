@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Xibo_CMVV.Views.AgendamentosPage"
+    Title="Gestão de Agendamentos">
+
+    <ScrollView>
+        <Grid Padding="20" ColumnDefinitions="*, 2*" ColumnSpacing="20">
+
+            <!-- Formulário de criação -->
+            <VerticalStackLayout Grid.Column="0" Spacing="15">
+                <Label Text="Novo Agendamento" FontSize="20" FontAttributes="Bold" />
+
+                <Entry x:Name="tituloInput" Placeholder="Título do Evento" />
+                <Entry x:Name="descricaoInput" Placeholder="Descrição" />
+                <Entry x:Name="dataInput" Placeholder="Data (YYYY-MM-DD)" />
+                <Entry x:Name="horaInput" Placeholder="Hora (HH:MM)" />
+                <Entry x:Name="localInput" Placeholder="Local" />
+
+                <Button Text="Criar Agendamento"
+                        Clicked="OnCriarAgendamentoClicked"
+                        BackgroundColor="#007ACC"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="10"
+                        Padding="15,10"
+                        HorizontalOptions="FillAndExpand" />
+
+                <Label x:Name="mensagemErro"
+                       Text=""
+                       FontSize="14"
+                       TextColor="Red"
+                       IsVisible="False"
+                       HorizontalOptions="Center" />
+            </VerticalStackLayout>
+
+            <!-- Lista de agendamentos -->
+            <VerticalStackLayout Grid.Column="1" Spacing="10">
+                <Label Text="Lista de Agendamentos" FontSize="20" FontAttributes="Bold" />
+
+                <CollectionView x:Name="agendamentosList">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame BorderColor="#444"
+                                   CornerRadius="12"
+                                   BackgroundColor="#111"
+                                   HasShadow="True"
+                                   Padding="15"
+                                   Margin="5">
+                                <VerticalStackLayout>
+                                    <Label Text="{Binding EventName}" FontAttributes="Bold" TextColor="White" />
+                                    <Label Text="{Binding StartDate}" FontSize="12" TextColor="LightGray" />
+                                    <Label Text="{Binding EndDate}" FontSize="12" TextColor="LightGray" />
+                                </VerticalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+
+        </Grid>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Xibo_CMVV.Views.UploadPage"
+             Title="Upload de Media"
+             BackgroundColor="#2c2c2c">
+
+    <Grid Padding="20" RowDefinitions="Auto" ColumnDefinitions="*, *" ColumnSpacing="20">
+        <!-- Coluna Esquerda -->
+        <VerticalStackLayout Grid.Column="0" Spacing="15">
+            <Label Text="Caminho do Ficheiro:" TextColor="White" />
+            <Entry x:Name="filePathEntry" Placeholder="Nenhum ficheiro selecionado" IsReadOnly="True" />
+
+            <Button Text="📂 Procurar" Clicked="OnBrowseClicked" BackgroundColor="#007bff" TextColor="White" />
+
+            <Label Text="Nome do Media:" TextColor="White" />
+            <Entry x:Name="mediaNameEntry" Placeholder="Nome do ficheiro" />
+
+            <Label Text="Descrição (opcional):" TextColor="White" />
+            <Entry x:Name="mediaDescEntry" Placeholder="Descrição" />
+
+            <Button Text="↑ Enviar" Clicked="OnUploadClicked" BackgroundColor="#28a745" TextColor="White" />
+
+            <ProgressBar x:Name="uploadProgressBar" Progress="0" IsVisible="False" HeightRequest="10" />
+
+            <Label x:Name="statusLabel" TextColor="Yellow" IsVisible="False" />
+        </VerticalStackLayout>
+
+        <!-- Coluna Direita -->
+        <VerticalStackLayout Grid.Column="1" Spacing="10">
+            <Label Text="Pré-visualização:" TextColor="White" />
+            <Frame BorderColor="#444" BackgroundColor="#3c3c3c" Padding="10" HasShadow="False">
+                <Image x:Name="previewImage" Aspect="AspectFit" HeightRequest="300" IsVisible="False" />
+            </Frame>
+            <Label x:Name="noPreviewLabel" Text="Nenhuma imagem selecionada." TextColor="Gray" HorizontalOptions="Center" />
+
+            <Label x:Name="fileInfoLabel" TextColor="LightGray" FontAttributes="Italic" IsVisible="False" />
+        </VerticalStackLayout>
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Xibo_CMVV.Views.LayoutsPage"
+             Title="Gestão de Conteúdos"
+             BackgroundColor="#2c2c2c">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+            <Grid RowDefinitions="Auto"
+                  ColumnDefinitions="*, *"
+                  ColumnSpacing="20">
+
+                <!-- Coluna esquerda: Formulário -->
+                <VerticalStackLayout Grid.Column="0" Spacing="20">
+                    <Label Text="Gestão de Conteúdos"
+                           FontSize="24"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           TextColor="White" />
+
+                    <Frame Padding="15"
+                           CornerRadius="10"
+                           BackgroundColor="#1e1e1e"
+                           HasShadow="True">
+                        <VerticalStackLayout Spacing="15">
+                            <Label Text="Nome do Layout:"
+                                   TextColor="White" />
+                            <Entry x:Name="layoutNameEntry"
+                                   Placeholder="Nome do Layout"
+                                   BackgroundColor="#333"
+                                   TextColor="White" />
+
+                            <Label Text="Descrição:"
+                                   TextColor="White" />
+                            <Entry x:Name="layoutDescriptionEntry"
+                                   Placeholder="Descrição"
+                                   BackgroundColor="#333"
+                                   TextColor="White" />
+
+                            <Button Text="📂 Selecionar Imagem"
+                                    Clicked="OnPickImageClicked"
+                                    BackgroundColor="#007bff"
+                                    TextColor="White" />
+                            <Label x:Name="selectedImageLabel"
+                                   Text="Nenhuma imagem selecionada"
+                                   FontAttributes="Italic"
+                                   FontSize="12"
+                                   TextColor="White" />
+
+                            <HorizontalStackLayout Spacing="10">
+                                <Button Text="➕ Criar"
+                                        Clicked="OnCreateLayoutClicked"
+                                        BackgroundColor="#28a745"
+                                        TextColor="White"
+                                        HorizontalOptions="FillAndExpand" />
+                                <Button Text="✏ Atualizar"
+                                        Clicked="OnUpdateLayoutClicked"
+                                        BackgroundColor="#ffc107"
+                                        TextColor="Black"
+                                        HorizontalOptions="FillAndExpand" />
+                                <Button Text="❌ Eliminar"
+                                        Clicked="OnDeleteLayoutClicked"
+                                        BackgroundColor="#dc3545"
+                                        TextColor="White"
+                                        HorizontalOptions="FillAndExpand" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Frame>
+                </VerticalStackLayout>
+
+                <!-- Coluna direita: Lista -->
+                <VerticalStackLayout Grid.Column="1" Spacing="20">
+                    <Label Text="Layouts Existentes"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           TextColor="White" />
+
+                    <CollectionView x:Name="layoutsList"
+                                    SelectionMode="Single"
+                                    SelectionChanged="OnLayoutSelected">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame Padding="10"
+                                       Margin="5"
+                                       CornerRadius="8"
+                                       BackgroundColor="#1e1e1e"
+                                       HasShadow="True">
+                                    <VerticalStackLayout>
+                                        <Label Text="{Binding layout}"
+                                               FontAttributes="Bold"
+                                               TextColor="White" />
+                                        <Label Text="{Binding description}"
+                                               FontSize="12"
+                                               TextColor="#cccccc" />
+                                        <Label Text="Estado: {Binding status}"
+                                               FontSize="10"
+                                               FontAttributes="Italic"
+                                               TextColor="#cccccc" />
+                                        <Label Text="{Binding assignedDisplayText}"
+                                               FontSize="10"
+                                               TextColor="#aaaaaa" />
+
+                                        <Button Text="📡 Atribuir a Display"
+                                                CommandParameter="{Binding layoutId}"
+                                                Clicked="OnAssignToDisplayClicked"
+                                                BackgroundColor="#17a2b8"
+                                                TextColor="White"
+                                                FontSize="12"
+                                                HorizontalOptions="FillAndExpand" />
+                                    </VerticalStackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Grid>
+
+            <!-- Indicador de carregamento no fundo -->
+            <ActivityIndicator x:Name="activityIndicator"
+                               IsRunning="False"
+                               IsVisible="False"
+                               Color="White"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               HeightRequest="50"
+                               WidthRequest="50" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

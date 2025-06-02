@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Xibo_CMVV.Views.LibraryPage"
+             Title="Gestão da Biblioteca"
+             BackgroundColor="#2c2c2c">
+
+    <Grid Padding="20" RowDefinitions="Auto, Auto, Auto, *">
+        <!-- Linha de botões -->
+        <HorizontalStackLayout Spacing="10">
+            <Button Text="📂 Listar Biblioteca" Clicked="OnListLibraryClicked" BackgroundColor="#007bff" TextColor="White" />
+            <Button Text="💾 Exportar CSV" Clicked="OnExportCsvClicked" BackgroundColor="#28a745" TextColor="White" />
+        </HorizontalStackLayout>
+
+        <!-- Campo de pesquisa -->
+        <Entry x:Name="searchEntry" Grid.Row="1" Placeholder="🔍 Pesquisar por nome..." TextChanged="OnSearchTextChanged" BackgroundColor="#3c3c3c" TextColor="White" Margin="0,10,0,10" />
+
+        <!-- Status -->
+        <Label x:Name="statusLabel" Grid.Row="2" TextColor="Yellow" IsVisible="False" Margin="0,0,0,10" />
+
+        <!-- Lista da biblioteca -->
+        <CollectionView x:Name="libraryList" Grid.Row="3">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BorderColor="#444" BackgroundColor="#3c3c3c" Padding="10" Margin="5">
+                        <VerticalStackLayout>
+                            <Label Text="{Binding name}" FontAttributes="Bold" TextColor="White" />
+                            <Label Text="📁 {Binding fileName}" TextColor="LightGray" />
+                            <Label Text="⏱ Duração: {Binding duration} | Tipo: {Binding type}" TextColor="LightGray" />
+                            <Label Text="🗓 Modificado: {Binding lastModifiedDate}" TextColor="LightGray" FontSize="10" />
+                            <Label Text="🆔 ID: {Binding mediaId}" TextColor="Gray" FontSize="10" />
+                            <HorizontalStackLayout Spacing="10">
+                                <Button Text="🔍 Detalhes" BackgroundColor="#17a2b8" TextColor="White" Clicked="OnDetailsClicked" CommandParameter="{Binding mediaId}" />
+                                <Button Text="🗑 Apagar" BackgroundColor="#dc3545" TextColor="White" Clicked="OnDeleteMediaClicked" CommandParameter="{Binding mediaId}" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+
+</ContentPage>

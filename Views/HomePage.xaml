@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Xibo_CMVV.Views.HomePage"
+    Title="Menu Principal">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="20" HorizontalOptions="Center">
+
+            <Label Text="Painel Principal"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+
+            <Button Text="👤 Gestão de Utilizadores"
+                    Clicked="OnUsersClicked"
+                    BackgroundColor="#007ACC"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    CornerRadius="12"
+                    Padding="20,12"
+                    WidthRequest="250" />
+
+            <Button Text="🖥️ Gestão de Displays"
+                    Clicked="OnDisplaysClicked"
+                    BackgroundColor="#28a745"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    CornerRadius="12"
+                    Padding="20,12"
+                    WidthRequest="250" />
+
+            <Button Text="📤 Upload de Media"
+                    Clicked="OnUploadClicked"
+                    BackgroundColor="#f0ad4e"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    CornerRadius="12"
+                    Padding="20,12"
+                    WidthRequest="250" />
+
+            <Button Text="📅 Gestão de Agendamentos"
+                    Clicked="OnAgendamentosClicked"
+                    BackgroundColor="#17a2b8"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    CornerRadius="12"
+                    Padding="20,12"
+                    WidthRequest="250" />
+
+            <Button Text="📐 Gestão de Layouts"
+                    Clicked="OnLayoutsClicked"
+                    BackgroundColor="#6f42c1"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    CornerRadius="12"
+                    Padding="20,12"
+                    WidthRequest="250" />
+
+            <Button Text="📚 Biblioteca de Media"
+                    Clicked="OnLibraryClicked"
+                    BackgroundColor="#d9534f"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    CornerRadius="12"
+                    Padding="20,12"
+                    WidthRequest="250" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

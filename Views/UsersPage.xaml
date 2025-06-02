@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Xibo_CMVV.Views.UsersPage"
+    Title="Gestão de Utilizadores">
+
+    <ScrollView>
+        <Grid Padding="20" ColumnDefinitions="*, 2*" ColumnSpacing="20">
+
+            <!-- Formulário de criação/edição -->
+            <VerticalStackLayout Grid.Column="0" Spacing="15">
+                <Label Text="Novo Utilizador"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center" />
+
+                <Entry x:Name="usernameEntry"
+                       Placeholder="Nome de utilizador" />
+
+                <Entry x:Name="emailEntry"
+                       Placeholder="Email"
+                       Keyboard="Email" />
+
+                <Entry x:Name="passwordEntry"
+                       Placeholder="Password"
+                       IsPassword="True" />
+
+                <HorizontalStackLayout Spacing="10">
+                    <Button x:Name="submitButton"
+                            Text="Criar Utilizador"
+                            Clicked="OnSubmitClicked"
+                            BackgroundColor="#007ACC"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            CornerRadius="10"
+                            Padding="15,10"
+                            HorizontalOptions="FillAndExpand" />
+
+                    <Button Text="Cancelar"
+                            Clicked="OnCancelClicked"
+                            BackgroundColor="#6c757d"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            CornerRadius="10"
+                            Padding="15,10"
+                            HorizontalOptions="FillAndExpand" />
+                </HorizontalStackLayout>
+
+                <Label x:Name="statusLabel"
+                       Text=""
+                       FontSize="14"
+                       TextColor="Green"
+                       HorizontalOptions="Center" />
+            </VerticalStackLayout>
+
+            <!-- Lista de utilizadores -->
+            <VerticalStackLayout Grid.Column="1" Spacing="10">
+                <Label Text="Lista de Utilizadores"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center" />
+
+                <Button Text="📂 Atualizar Lista"
+                        Clicked="OnRefreshClicked"
+                        BackgroundColor="#6c757d"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="10"
+                        Padding="12,6"
+                        HorizontalOptions="End" />
+
+                <CollectionView x:Name="usersList">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame BorderColor="#444"
+                                   CornerRadius="12"
+                                   BackgroundColor="#111"
+                                   HasShadow="True"
+                                   Padding="15"
+                                   Margin="5">
+                                <VerticalStackLayout>
+                                    <Label Text="{Binding userName}"
+                                           FontAttributes="Bold"
+                                           TextColor="White" />
+                                    <Label Text="{Binding email}"
+                                           FontSize="12"
+                                           TextColor="LightGray" />
+
+                                    <HorizontalStackLayout Spacing="10"
+                                                           HorizontalOptions="End">
+                                        <Button Text="✏️ Editar"
+                                                CommandParameter="{Binding .}"
+                                                Clicked="OnEditClicked"
+                                                BackgroundColor="#f0ad4e"
+                                                TextColor="White"
+                                                FontAttributes="Bold"
+                                                CornerRadius="10"
+                                                Padding="10,5" />
+
+                                        <Button Text="🗑️ Eliminar"
+                                                CommandParameter="{Binding userId}"
+                                                Clicked="OnDeleteClicked"
+                                                BackgroundColor="#d9534f"
+                                                TextColor="White"
+                                                FontAttributes="Bold"
+                                                CornerRadius="10"
+                                                Padding="10,5" />
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+
+        </Grid>
+    </ScrollView>
+</ContentPage>
